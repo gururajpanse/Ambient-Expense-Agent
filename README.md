@@ -273,6 +273,10 @@ agents-cli infra cicd
 | `uv run pytest tests/unit tests/integration` | Run all tests |
 | `agents-cli deploy` | Deploy to Agent Runtime |
 
+## 🏫 Acknowledgements
+
+This project was built and refined as part of the **5-Day Intensive Vibe Coding Course** presented by **Google x Kaggle**.
+
 ---
 
 ## 📄 License
