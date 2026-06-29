@@ -257,6 +257,51 @@ Built-in telemetry exports to:
 
 ## 🚢 Deployment
 
+### ☁️ Hugging Face Spaces (Free Cloud Hosting)
+
+This project is configured to run on Hugging Face Spaces as a Docker container.
+
+#### 1. Create a Space
+- Go to [Hugging Face Spaces](https://huggingface.co/spaces) and click **Create new Space**.
+- Choose **Docker** as the SDK.
+- Choose **Blank** as the template.
+- Set your Space to **Public** or **Private** (Private is recommended to keep your playground inputs and API usage secure).
+
+#### 2. Configure Secrets
+In your Space's **Settings** -> **Variables and secrets**, add:
+- `GEMINI_API_KEY`: Your Google AI Studio API Key.
+
+#### 3. Push to Hugging Face
+Add Hugging Face as a git remote and push your code:
+```bash
+# Add Hugging Face remote (replace with your username and space name)
+git remote add hf https://huggingface.co/spaces/<your-username>/<your-space-name>
+
+# Update the remote URL with a Hugging Face User Access Token (Write access) to authenticate
+git remote set-url hf https://<your-username>:<your-hf-token>@huggingface.co/spaces/<your-username>/<your-space-name>
+
+# Push the main branch
+git push hf main --force
+```
+
+#### 4. Run the Agent
+Once the container is successfully built and running:
+- **Interactive Web UI Playground:** Open the Space page in your browser. It serves the built-in Google ADK interactive playground UI.
+- **REST API:** Send a POST request to your Space's direct API trigger endpoint:
+  ```bash
+  curl -X POST https://<your-username>-<your-space-name>.hf.space/trigger/pubsub \
+    -H "Content-Type: application/json" \
+    -d '\''{
+      "subscription": "expense-submissions",
+      "message": {
+        "data": "eyJhbW91bnQiOiA3NS4wLCAic3VibWl0dGVyIjogImFsaWNlQGV4YW1wbGUuY29tIiwgImNhdGVnb3J5IjogIm1lYWxzIiwgImRlc2NyaXB0aW9uIjogIlRlYW0gbHVuY2giLCAiZGF0ZSI6ICIyMDI2LTA2LTIzIn0="
+      }
+    }'\''
+  ```
+
+---
+
+### 📦 Google Agent Runtime (Production)
 ```bash
 # Deploy to Google Agent Runtime
 gcloud config set project <your-project-id>
@@ -268,6 +313,7 @@ agents-cli scaffold enhance
 # Full production setup
 agents-cli infra cicd
 ```
+
 
 ---
 
