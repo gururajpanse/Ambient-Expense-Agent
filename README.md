@@ -1,3 +1,12 @@
+---
+title: Ambient Expense Agent
+emoji: 🧾
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
 # 🧾 Ambient Expense Agent
 
 > An AI-powered expense processing agent built with **Google ADK 2.0** that automatically routes, reviews, and approves expense reports through a graph-based workflow — combining LLM intelligence, security guardrails, and human-in-the-loop oversight.
