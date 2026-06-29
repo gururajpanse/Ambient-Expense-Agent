@@ -15,8 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Install uv globally (runs as root)
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+# Install uv globally using pip to ensure it is in the system PATH
+RUN pip install --no-cache-dir uv
 
 # Set the working directory
 WORKDIR /app
